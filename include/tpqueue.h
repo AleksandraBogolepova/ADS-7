@@ -6,7 +6,7 @@
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
-private:
+ private:
   struct ITEM {
     T data;
     ITEM* next;
@@ -21,13 +21,14 @@ private:
   }
   ITEM* tail;
   ITEM* head;
-public:
+  
+ public:
   TPQueue():head(nullptr), tail(nullptr) {}
   void push(const T& value) {
     ITEM* temp = head;
     ITEM* item = create(value);
     while (temp && temp->data.prior >= value.prior) {
-      temp = temp.next;
+      temp = temp->next;
     }
     if (!temp && head) {
       tail->next = item;
@@ -35,7 +36,7 @@ public:
       tail = item;
     } else if (!temp && !head) {
       head = tail = item;
-    } else if (!temp.prev) {
+    } else if (!temp->prev) {
       head->prev = item;
       item->next = head;
       head = item;
