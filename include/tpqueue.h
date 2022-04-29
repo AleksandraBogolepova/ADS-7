@@ -14,9 +14,9 @@ private:
   };
   ITEM* create(const T& value) {
     ITEM* item = new ITEM;
-    item.data = value;
-    item.prev = nullptr;
-    item.nex = nullptr;
+    item->data = value;
+    item->prev = nullptr;
+    item->nex = nullptr;
     return item;
   }
   ITEM* tail;
@@ -26,33 +26,33 @@ public:
   void push(const T& value) {
     ITEM* temp = head;
     ITEM* item = create(value);
-    while (temp && temp.data.prior >= value.prior) {
+    while (temp && temp->data.prior >= value.prior) {
       temp = temp.next;
     }
     if (!temp && head) {
-      tail.next = item;
-      item.prev = tail;
+      tail->next = item;
+      item->prev = tail;
       tail = item;
     } else if (!temp && !head) {
       head = tail = item;
     } else if (!temp.prev) {
-      head.prev = item;
-      item.next = head;
+      head->prev = item;
+      item->next = head;
       head = item;
     } else {
-      temp.prev.next = item;
-      item.prev = temp.prev;
-      item.next = temp;
-      temp.prev = item;
+      temp->prev->next = item;
+      item->prev = temp->prev;
+      item->next = temp;
+      temp->prev = item;
     }
   }
   T pop() {
     if (head && tail) {
-      ITEM* temp = head.next;
+      ITEM* temp = head->next;
       if (temp) {
-        temp.prev = nullptr;
+        temp->prev = nullptr;
       }
-      T value = head.next;
+      T value = head->next;
       delete head;
       head = temp;
       if (!head) {
