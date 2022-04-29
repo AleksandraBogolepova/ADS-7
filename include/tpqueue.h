@@ -53,7 +53,7 @@ class TPQueue {
       if (temp) {
         temp->prev = nullptr;
       }
-      T value = head->next;
+      T value = head->data;
       delete head;
       head = temp;
       if (!head) {
