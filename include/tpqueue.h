@@ -16,7 +16,7 @@ class TPQueue {
     ITEM* item = new ITEM;
     item->data = value;
     item->prev = nullptr;
-    item->nex = nullptr;
+    item->next = nullptr;
     return item;
   }
   ITEM* tail;
